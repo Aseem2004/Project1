@@ -1,0 +1,394 @@
+<html>
+    <head>
+        <title>My project</title>
+        </head>
+        <body>
+            <h1>Welcome to my code for the Library Management System<br>
+            Here it goes-</h1><br><br><br><br>
+<b>#CODE FOR LIBRARY(PYTHON+MYSQL)</b><br>
+print("LIBRARY DATABASE")<br><br>
+<b>#CREATING DATABASE<br></b>
+import mysql.connector as sqltor<br>
+#import datetime<br>
+import sys<br>
+mydb=sqltor.connect(host="localhost",user="root",passwd="1234")<br>
+mycursor=mydb.cursor()<br>
+mycursor.execute("create database if not exists library")<br>
+mycursor.execute("use library")<br><br>
+<b>#CREATING ALL REQUIRED TABLES<br></b>
+mycursor.execute("create table if not exists main_lib(cardno char(10)
+primary key,name_of_person varchar(30),phone_no char(10),address
+varchar(30),dob date)")<br>
+mycursor.execute("create table if not exists books (book_name
+varchar(30),book_no char(5) primary key,genre varchar(10),authors_name
+varchar(15),language varchar(15))")<br>
+mycursor.execute("create table if not exists library_trans(cardno
+char(10),foreign key(cardno) references main_lib(cardno),book_name
+varchar(20),dateoflend date,dateofreturn date)")<br>
+mycursor.execute("create table if not exists buy_new_books(orderno
+varchar(6) primary key,name_of_book varchar(20),del_date date,price
+char(4))")<br>
+mydb.commit()<br>
+while True:<br>
+
+ print("1-Create a new account")<br>
+ print("2-See the account info")<br>
+ print("3-Update card holder info")<br>
+ print("4-Delete account")<br>
+ print("5-Add new books")<br>
+ print("6-See all books")<br>
+ print("7-Update book details")<br>
+ print("8-Delete book")<br>
+ print("9-Lend a book")<br>
+ print("10-Return book")<br>
+ print("11-Display lending history")<br>
+ print("12-Order new book")<br>
+ print("13-Update order details")<br>
+ print("14-Display order history")<br>
+ print("15-EXIT the program")<br>
+ ch=int(input("enter your choice"))<br><br>
+ <p style="color:red;"><b>#TO CREATE A NEW LIBRARY ACCOUNT(QUERY 1)</b></p>
+ if ch==1:<br>
+ print("To go back press 1")<br>
+ print()<br>
+ print("To continue press 2")<br>
+ print()<br>
+ a=int(input("enter your choice:"))<br>
+ if a==1:<br>
+ continue<br>
+ if a==2:<br>
+ print("FILL ALL PERSONAL DETAILS OF ACCOUNT HOLDER")<br>
+ cardno=str(input("enter card no:"))<br>
+ name_of_person=str(input("Enter name:"))<br>
+ phone_no=str(input("Enter phone no:"))<br>
+ address=str(input("Enter the address(max 30 words):"))<br>
+ dob=str(input("Enter the date of birth(yyyy-mm-dd):"))<br>
+ mycursor.execute("insert into main_lib
+values('"+cardno+"','"+name_of_person+"','"+phone_no+"','"+address+"','"+
+dob+"')")<br>
+ mydb.commit()<br>
+ print("ACCOUNT IS SUCCESSFULLY CREATED!!!!")<br>
+<p style="color:red;"><b> #TO SEE DETAILS OF CARD HOLDER(QUERY 2)</b></p>
+ elif ch==2:<br>
+ cardno=str(input("Enter card no:"))<br>
+ mycursor.execute("select * from main_lib where<br>
+cardno='"+cardno+"'")
+ data=mycursor.fetchall()<br>
+ if data==[]:<br>
+ print("No record found")<br>
+ else:<br>
+ print(data)<br><br>
+ <p style="color:red;"><b>#TO UPDATE CARD HOLDER INFORMATION(QUERY 3)</b></p>br>
+ elif ch==3:<br>
+
+ print("Press 1 to update name:")<br>
+ print()<br>
+ print("Press 2 to update phone no:")<br>
+ print()<br>
+ print("Press 3 to update address:")<br>
+ print()<br>
+ print("Press 4 to update date of birth:")<br>
+ print()<br>
+ ch1=int(input("Enter your choice:"))<br><br>
+
+ <p style="color:green;"><b>#TO UPDATE NAME(CHOICE 1)</b></p><br>
+ if ch1==1:<br>
+ mycursor.execute("select * from main_lib")<br>
+ for i in mycursor:<br>
+ print(i)<br>
+ cardno=str(input("Enter card no:"))<br>
+ name_of_person=str(input("Enter new name:"))<br>
+ mycursor.execute("update main_lib set<br>
+name_of_person='"+name_of_person+"' where cardno='"+cardno+"'")<br>
+ mydb.commit()<br>
+ print("Name has been updated")<br>
+ mycursor.execute("select * from main_lib")<br>
+ for i in mycursor:<br>
+ print(i)<br><br>
+ <p style="color:green;"><b>#TO UPDATE PHONE NUMBER(CHOICE 2)</b></p><br>
+ elif ch1==2:<br>
+ mycursor.execute("select * from main_lib")<br>
+ for i in mycursor:<br>
+ print(i)<br>
+ cardno=str(input("Enter card no:"))<br>
+ phone_no=str(input("Enter new phone no:"))<br>
+ mycursor.execute("update main_lib set phone_no='"+phone_no+"'
+where cardno='"+cardno+"'")<br>
+ mydb.commit()<br>
+ print("Phone Number has been updated")<br>
+ mycursor.execute("select * from main_lib")<br>
+ for i in mycursor:<br>
+ print(i)<br><br>
+ <p style="color:green;"><b>#TO UPDATE ADDRESS(CHOICE 3)</b></p><br>
+ elif ch1==3:<br>
+ mycursor.execute("select * from main_lib")<br>
+ for i in mycursor:<br>
+ print(i)<br>
+ cardno=str(input("Enter card no:"))<br>
+ address=str(input("Enter new address:"))<br>
+ mycursor.execute("update main_lib set address='"+address+"'
+where cardno='"+cardno+"'")<br>
+ mydb.commit()<br>
+ print("Address has been updated")<br>
+ mycursor.execute("select * from main_lib")<br>
+ for i in mycursor:<br>
+ print(i)<br><br>
+ <p style="color:green;"><b>#TO UPDATE DATE OF BIRTH(CHOICE 4)</b></p><br>
+ elif ch1==4:<br>
+ mycursor.execute("select * from main_lib")<br>
+ for i in mycursor:<br>
+ print(i)<br>
+ cardno=str(input("Enter card no:"))<br>
+ dob=str(input("Enter new date of birth(yyyy-mm-dd):"))<br>
+ mycursor.execute("update library_master set dob='"+dob+"'
+where cardno='"+cardno+"'")<br>
+ mydb.commit()<br>
+ print("Date of birth has been updated")<br>
+ mycursor.execute("select * from main_lib")<br>
+ for i in mycursor:<br>
+ print(i)<br><br>
+
+ <p style="color:red;"><b>#TO DELETE AN ACCOUNT(QUERY 4)</b></p><br>
+ elif ch==4:<br>
+ mycursor.execute("select * from main_lib ")<br>
+ for i in mycursor:<br>
+ print(i)<br>
+ cardno=str(input("Enter card no:"))<br>
+ mycursor.execute("delete from main_lib where<br>
+cardno='"+cardno+"'")<br>
+ mydb.commit()<br>
+ print("Account removed succesfully")<br>
+ mycursor.execute("select * from main_lib")<br>
+ for i in mycursor:<br>
+ print(i)<br><br>
+
+ <p style="color:red;"><b>#TO ADD NEW BOOK(QUERY 5)</b></p><br>
+ elif ch==5:<br>
+ print("FILL ALL BOOK DETAILS ")<br>
+ book_name=str(input("enter book name:"))<br>
+ book_no=str(input("Enter no (max 5 characters):"))<br>
+ genre=str(input("Enter genre:"))<br>
+ authors_name=str(input("Enter the authors name (max 15 words):"))<br>
+ language=str(input("Enter the language of book:"))<br>
+ mycursor.execute("insert into books
+values('"+book_name+"','"+book_no+"','"+genre+"','"+authors_name+"','"+la
+nguage+"')")<br>
+ mydb.commit()<br>
+ print("Book added succesfully")<br>
+ for i in mycursor:<br>
+ print(i)<br><br>
+
+ <p style="color:red;"><b>#TO SEE BOOK DETAILS(QUERY 6)</b></p><br>
+ elif ch==6:<br>
+ book_no=str(input("Enter Book No:"))<br>
+ mycursor.execute("select * from books where
+book_no='"+book_no+"'")<br>
+ for i in mycursor:<br>
+ print(i)<br><br>
+
+ <p style="color:red;"><b>#TO UPDATE BOOK DETAILS(QUERY 7)</b></p><br>
+ <p style="color:green;"><b>#TO UPDATE NAME(CHOICE 1)</b></p></b>
+ if ch1==1:<br>
+ mycursor.execute("select * from books")<br>
+ 
+ for i in mycursor:<br>
+ print(i)<br>
+ book_no=str(input("Enter book no:"))<br>
+ name_of_book=str(input("Enter new name:"))<br>
+ mycursor.execute("update books set
+book_name='"+name_of_book+"' where book_no='"+book_no+"'")<br>
+ mydb.commit()<br>
+ print("Name has been updated")<br>
+ mycursor.execute("select * from books")<br>
+ for i in mycursor:<br>
+ print(i)<br><br>
+ <p style="color:green;"><b>#TO UPDATE GENRE(CHOICE 2)</b></p><br>
+ elif ch1==2:<br>
+ mycursor.execute("select * from books")<br>
+ for i in mycursor:<br>
+ print(i)<br>
+ book_no=str(input("Enter book no:"))<br>
+ genre=str(input("Enter new genre:"))<br>
+ mycursor.execute("update books set genre='"+genre+"' where
+book_no='"+book_no+"'")<br>
+ mydb.commit()<br>
+ print("Genre has been updated")<br>
+ mycursor.execute("select * from books")<br>
+ for i in mycursor:<br>
+ print(i)<br><br>
+
+ <p style="color:green;"><b>#TO UPDATE AUTHOR NAME(CHOICE 3)</b></p><br>
+ elif ch1==3:<br>
+ mycursor.execute("select * from books")<br>
+ for i in mycursor:<br>
+ print(i)<br>
+ book_no=str(input("Enter book no:"))<br>
+ author=str(input("Enter new author's name:"))<br>
+ mycursor.execute("update books set authors_name='"+author+"'
+where book_no='"+book_no+"'")<br>
+ mydb.commit()<br>
+ print("Author's name has been updated")<br>
+ mycursor.execute("select * from books")<br>
+ for i in mycursor:<br>
+ print(i)<br><br>
+
+ <p style="color:green;"><b>#TO UPDATE LANGUAGE(CHOICE 4)</b></p><br>
+ elif ch1==4:<br>
+ mycursor.execute("select * from books")<br>
+ for i in mycursor:<br>
+ print(i)<br>
+ book_no=str(input("Enter book no:"))<br>
+ language=str(input("Enter new language:"))<br>
+ mycursor.execute("update books set language='"+language+"'
+where book_no='"+book_no+"'")<br>
+ mydb.commit()<br>
+ print("Language has been updated")<br>
+ mycursor.execute("select * from books")<br>
+ for i in mycursor:<br>
+ print(i)<br><br>
+ <p style="color:red;"><b>#TO DELETE A BOOK(QUERY 8)</b></p><br>
+ elif ch==8:<br>
+ mycursor.execute("select * from books")<br>
+ for i in mycursor:<br>
+ print(i)<br>
+ book_no=str(input("Enter book no:"))<br>
+ mycursor.execute("delete from books where book_no='"+book_no+"'")<br>
+ mydb.commit()<br>
+ print("Details of book removed succesfully")<br>
+ mycursor.execute("select * from books")<br>
+ for i in mycursor:<br>
+ print(i)<br><br>
+ <p style="color:red;"><b>#TO LEND A BOOK(QUERY 9)</b></p><br>
+ elif ch==9:<br>
+ print("To go back press 1")<br>
+ print()<br>
+ print("To continue press 2")<br>
+ print()<br>
+ a=int(input("Enter your choice:"))<br>
+ if a==1:<br>
+ continue<br>
+ if a==2:<br>
+ cardno=str(input("Enter card no:"))<br>
+ book_name=str(input("Enter the name of the book:"))<br>
+ dateoflend=str(input("Enter date of lending(yyyy-mm-dd)"))<br>
+ dateofreturn=str(input("enter date of return(yyyy-mm-dd):"))<br>
+ mycursor.execute("insert into library_trans
+values('"+cardno+"','"+book_name+"','"+dateoflend+"','"+dateofreturn+"')"
+)<br>
+ mydb.commit()<br><br>
+
+ <p style="color:red;"><b>#TO RETURN A BOOK(PART OF UPDATION)(QUERY 10)</b></p><br>
+ elif ch==10:<br>
+ print("To go back press 1")<br>
+ print()<br>
+ print("To continue press 2")<br>
+ print()<br>
+ a=int(input("enter your choice:"))<br>
+ if a==1:<br>
+ continue<br>
+ if a==2:<br>
+ cardno=str(input("Enter card no:"))<br>
+ dateofreturn=str(input("Enter date of return(yyyy-mm-dd):"))<br>
+ mycursor.execute("update library_trans set
+dateofreturn='"+date_of_return+"' where cardno='"+cardno+"'")<br>
+ mydb.commit()<br><br>
+
+ <p style="color:red;"><b>#TO SEE LENDING HISTORY(QUERY 11)</b></p>br>
+ elif ch==11:<br>
+ cardno=str(input("Enter card no:"))<br>
+ mycursor.execute("select * from library_trans where
+cardno='"+cardno+"'")<br>
+ for i in mycursor:<br>
+ print(i)<br><br>
+
+ <p style="color:red;"><b>#TO ORDER A NEW BOOK(QUERY 12)</b></p><br>
+ elif ch==12:<br>
+ orderno=str(input("Enter the order no:"))<br>
+ name_of_book=str(input("Enter the name of the book:"))<br>
+ del_date=str(input("Enter the expected delivery date of
+books(yyyy-mm-dd):"))<br>
+ price=str(input("Enter the price of the book"))<br>
+ mycursor.execute("insert into buy_new_books
+values('"+orderno+"','"+name_of_book+"','"+del_date+"','"+price+"')")<br>
+ mydb.commit()<br><br>
+
+ <p style="color:red;"><b>#TO UPDATE ORDER DETAILS(QUERY 13)</b></p><br>
+ elif ch==13:<br>
+ print("Press 1 to update name of book")<br>
+ print()<br>
+ print("Press 2 to update delivery date")<br>
+ print()<br>
+ print("Press 3 to update price")<br>
+ print()<br>
+ ch1=int(input("Enter your choice:"))<br><br>
+
+ <p style="color:green;"><b>#TO UPDATE BOOK NAME(CHOICE 1)</b></p><br>
+ if ch1==1:<br>
+ mycursor.execute("select * from buy_new_books")<br>
+ for i in mycursor:<br>
+ print(i)<br>
+ orderno=str(input("Enter order no:"))<br>
+ name_of_book=str(input("Enter new name:"))<br>
+ mycursor.execute("update buy_new_books set
+name_of_book='"+name_of_book+"' where orderno='"+orderno+"'")<br>
+ mydb.commit()<br>
+ print("Name has been updated")<br>
+ mycursor.execute("select * from buy_new_books")<br>
+ for i in mycursor:<br>
+ print(i)<br><br>
+
+ <p style="color:green;"><b>#TO UPDATE DELIVERY DATE(CHOICE 2)</b></p><br>
+ elif ch1==2:<br>
+ mycursor.execute("select * from buy_new_books")<br>
+ for i in mycursor:<br>
+ print(i)<br>
+ orderno=str(input("Enter card no:"))<br>
+ del_date=str(input("Enter new delivery date(yyyy-mm-dd):"))<br>
+ mycursor.execute("update buy_new_books set
+del_date='"+del_date+"' where orderno='"+orderno+"'")<br>
+ mydb.commit()<br>
+ print("Delivery date has been updated")<br>
+ mycursor.execute("select * from buy_new_books")<br>
+ for i in mycursor:<br>
+ print(i)<br><br>
+
+ <p style="color:green;"><b>#TO UPDATE PRICE(CHOICE 3)</b></p><br>
+ elif ch1==3:<br>
+ mycursor.execute("select * from buy_new_books")<br>
+ for i in mycursor:<br>
+ print(i)<br>
+ orderno=str(input("Enter card no:"))<br>
+ price=str(input("Enter new price:"))<br>
+ mycursor.execute("update buy_new_books set price='"+price+"'
+where orderno='"+orderno+"'")<br>
+ mydb.commit()<br>
+ print("Price has been updated")<br>
+ mycursor.execute("select * from buy_new_books")<br>
+ for i in mycursor:<br>
+ print(i)<br><br>
+
+
+ <p style="color:red;"><b>#TO DISPLAY ORDERING HISTORY(QUERY 14)</b></p><br>
+ elif ch==14:<br>
+ orderno=str(input("Enter order number:"))<br>
+ mycursor.execute("select * from buy_new_books where
+orderno='"+orderno+"'")<br>
+ for i in mycursor:<br>
+ print(i)<br>
+ <br>
+ <p style="color:red;"><b>#TO EXIT THE PROGRAM(QUERY 15)</b></p><br>
+ else:<br>
+ sys.exit()<br><br><br><br>
+ <p>This is a simple code which basically involves the working of Python and MySQL in tandem</p><br>
+ <p>Did you liked it?</p>
+ <select name="Options">
+    <option value="Yes">YES</option>
+    <option value="Def">Definitely YES</option>
+ </select><br><br>
+ <textarea name="feedback" placeholder="Please give your feedback here" rows="7"></textarea><br>
+ <p>Thank you for reading this</p>
+ <img src="/TY.jpg" height="225" width="500">
+ <br>
+ <h3><a href="/index.html">Go Back</a></h3>
+ </body>
+ </html>
