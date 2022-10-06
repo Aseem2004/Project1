@@ -4,18 +4,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aseem Jain's Portfolio</title>    
-    <style>
-  li{
+<style>
+    *{
+    padding: 0;
+    margin: 0;
+    font-family: 'Dancing Script', cursive;
+    font-family: 'Noto Sans Devanagari', sans-serif;
+    box-sizing: border-box;
+    max-width: 100vw;
+    z-index: 1;
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+nav{
+    padding: 3vh 0;
+    width: 100vw;
+    position: fixed;
+    transition: background-color .3s ease 0s;
+    color: #000;
+    background-color: white;
+    letter-spacing: 1px;
+    z-index: 3;
+}
+
+#hi{
+    font-size: 15vw;
+    font-weight: 900;
+    font-family: cursive;
+}
+
+li{
     display: inline;
     padding: 1vw;
     color: black;
     text-decoration: none;
     font-weight: 700;
     font-size: 2.3vw;
-}  
-</style>
-<style>
-    Home{
+}
+
+#Home{
     display: flex;
     padding-left: 1vw;
     font-size: 4vw ;
@@ -23,37 +53,131 @@
     position: center right;
     padding-bottom: 16vh;
     min-height: 100vh;
-    color: black;
+    color: white;
+    background-image: url("");
     background-size: 100vh 100vw;
     width: 100vw;
     flex-wrap: wrap;
     justify-content: center;
-    /* align-items: center; */
+    align-items: center;
+}
+
+#Profile{
+    width: 50vh;
+    border: 2px solid black;
+    border-radius: 25vh;
+    max-width: 92vw;
+
+}
+
+#Aboutcon{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+#About{
+    padding-top: 15vh;
+    background-size: 100vh 100vw;
+    background-color: white;
+    min-height:100vh;
+    width: 100vw;
+}
+.AboutText{
+    margin: 3vw;
+    width: 50vw;
+    font-size: 20px;
+}
+.bold{
+    font-weight: 700;
+}
+
+#Projects{
+    padding: 15vh 4px 4px 0;
+    width: 100vw;
+    background-color: white;
+    min-height: 100vh;
+    color: black;
+}
+
+.pro{
+    padding: 5px;
+    width: 296px;
+    height: 513px;
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+    border: 2px solid Black;
+    border-radius: 8px;
+}
+
+#Skills{
+    background-image: url("");
+    background-position: center top;
+    background-size: cover;
+    padding-top: 15vh;
+    background-size: 100vh 100vw;
+    color: white;
+    min-height: 100vh;
+    width: 100vw;
+}    
+
+#Achievements{
+    padding-top: 15vh;
+    background-image: url("");
+    background-size: 10vh;
+    background-size: cover;
+    min-height: 100vh;
+    background-repeat: no-repeat;
+}
+
+
+footer{
+    background-color: white;
+    background-size: 100vh 100vw;   
+}
+
+#Contacts{
+    padding: 10vh 0;
+    background-image: url("");
+    min-height: 10vh;
+    color: white;
+}
+.flexd{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content:space-evenly;
+}
+
+.center{
+    text-align: center;
+}
+
+.lfont{
+    font-size: 46px;
+    text-decoration: underline;
 }
 </style>
 </head>
-
 <body>
     <nav>
         <div>
         <ul type="none" class="bold">
         <span>
-            <li><a href="#Home" style = "text-decoration: none; color:black;"><ion-icon name="home-outline"></ion-icon>Aseem Jain</a></li>
+            <li><a href="#Home"><ion-icon name="home-outline"></ion-icon>Aseem Jain</a></li>
         </span>
         <span>
-            <li><a href="#About"style = "text-decoration: none; color: black;"><ion-icon name="accessibility-outline"></ion-icon> About</a></li>
+            <li><a href="#About"><ion-icon name="accessibility-outline"></ion-icon> About</a></li>
         </span>
         <span>
-            <li><a href="#Skills"style = "text-decoration: none;color: black;"><ion-icon name="bulb-outline"></ion-icon> Skills</a></li>
+            <li><a href="#Skills"><ion-icon name="bulb-outline"></ion-icon> Skills</a></li>
         </span>
         <span>
-            <li><a href="#Projects"style = "text-decoration: none;color: black;"><ion-icon name="albums-outline"></ion-icon> Projects</a></li>
+            <li><a href="#Projects"><ion-icon name="albums-outline"></ion-icon> Projects</a></li>
         </span>
         <span>
-            <li><a href="#Achievements"style = "text-decoration: none;color: black;"><ion-icon name="trophy-outline"></ion-icon> Achievements</a></li>
+            <li><a href="#Achievements"><ion-icon name="trophy-outline"></ion-icon> Achievements</a></li>
         </span>
         <span>
-            <li><a href="#Contacts"style = "text-decoration: none;color: black;"><ion-icon name="call-outline"></ion-icon> Contact</a></li>
+            <li><a href="#Contacts"><ion-icon name="call-outline"></ion-icon> Contact</a></li>
         </span>
     </ul>
     </div>
@@ -65,11 +189,11 @@
         </div>
     </header>
     <main>
-        <div id="About">
+        <div id="About" style="text-align: center;">
         <h1>ABOUT</h1><br>
         <div>
             <div>
-                <br><br><br><img src="/Myself.jpeg" alt="Can't Load Your Image">
+                <br><img src="R/Myself.jpeg" height=300 width=225 alt="Can't Load Your Image" style="border: 2px redf;border-radius: 150;">
             </div>
             <div>
                 <div>&#9830; &#9830; &#9830;<br><br></div>
@@ -78,27 +202,27 @@
             </div>
         </div>
         </div>
-        <div id="Skills">
+        <div id="Skills" style="text-align: center;">
             <h1>SKILLS</h1>
-            <div">
+            <div style = "display: flex; flex-wrap: wrap; justify-content: space-evenly;">
                 <div>
-                    <img src="/HTML.jpeg" alt="Can't Load Your Image" height="225" width="225">
+                    <img src="R/HTML.jpeg" alt="Can't Load Your Image" height="225" width="225">
                 </div>
                 <div>
-                    <img src="/CSS.jpeg" alt="Can't Load Your Image" height="225" width="225">
+                    <img src="R/CSS.jpeg" alt="Can't Load Your Image" height="225" width="225">
                 </div>
                 <div>
-                    <img src="/C.jpeg" alt="Can't Load Your Image" height="225" width="225">
+                    <img src="R/C.jpeg" alt="Can't Load Your Image" height="225" width="225">
                 </div>
                 <div>
-                    <img src="/Python.jpeg" alt="Can't Load Your Image" height="225" width="225">
+                    <img src="R/Python.jpeg" alt="Can't Load Your Image" height="225" width="225">
                 </div>   
             </div>
         </div>
-        <div id="Projects">
+        <div id="Projects" style="text-align: center;">
             <h1>PROJECTS</h1>
             <div>
-                    <img src="/Lib.jpeg" height="225" width="225" alt="Can't Load Your Image"><br><h2>Library Management System</h2><br>This project is complete and totally error-free. It uses Python and MySQL basics to create a basic project about how an online library is managed. Go and order your books now <img src="/Wink.jpg" height="20" width="20"><br>
+                    <img src="R/Lib.jpeg" height="225" width="225" alt="Can't Load Your Image"><br><h2>Library Management System</h2><br>This project is complete and totally error-free. It uses Python and MySQL basics to create a basic project about how an online library is managed. Go and order your books now <img src="R/Wink.jpg" height="20" width="20"><br>
                     <p>Wanna see my code</p>
                     <form>
                         <label for="101">
@@ -108,27 +232,27 @@
                         <input type ="radio" value="No" name="ans" id="102">No 
                         </label>                       
                     </form>
-                    <p>To see my code click here</p><a  href="/Library.html">See Code Here</a>                    
+                    <p>To see my code click here</p><a  href="Library.html">See Code Here</a>                    
             </div>
         </div>
-        <div id="Achievements">
+        <div id="Achievements" style="text-align: center;">
             <h1>ACHIEVEMENTS</h1>
-            <div>
+            <div style = "display: flex; flex-wrap: wrap; justify-content: space-evenly;">
                 <div>
                     <p>My 10<sup>th</sup>result by school</p>
-                    <img src="/10th.jpg" alt="Can't Load Your Image" height="300" width="225"><br><br><br>
+                    <img src="R/10th.jpg" alt="Can't Load Your Image" height="400" width="325"><br><br><br>
                 </div>
                 <div>
                     <p>CSBE appreciation</p>
-                    <img src="/CBSE.jpg" alt="Can't Load Your Image"height="300" width="225"><br><br><br>
+                    <img src="R/CBSE.jpg" alt="Can't Load Your Image"height="400" width="325"><br><br><br>
                 </div>
                 <div>
                     <p>Art and Craft competition</p>
-                    <img src="/Mar.jpg" alt="Can't Load Your Image" height="300" width="225"><br><br><br>
+                    <img src="R/Mar.jpg" alt="Can't Load Your Image"height="400" width="325"><br><br><br>
                 </div>
                 <div>
                     <p>First in poem recitation at city level</p>
-                    <img src="/poem.jpg" alt="Can't Load Your Image"height="300" width="225">
+                    <img src="R/poem.jpg" alt="Can't Load Your Image"height="400" width="325">
                 </div>
                
             </div>
@@ -136,26 +260,26 @@
     </main>
     <footer>
         <div id="Contacts">
-            <h1>CONTACTS</h1><br><br>
+            <h1>CONTACTS:</h1>
             <ul>
                 <span>
-                    <li><a href="https://www.linkedin.com/in/aseem-jain-258608252/"style = "text-decoration: none; color: black;" color: black;><ion-icon name="logo-linkedin"></ion-icon>LinkedIn</a></li>
-                </span>
+                    <li><a href="https://www.linkedin.com/in/aseem-jain-258608252/"style = "text-decoration: none; color: white;"><ion-icon name="logo-linkedin"></ion-icon>LinkedIn</a></li>
+                </span><br>
                 <span>
-                    <li><a href="https://github.com/Aseem2004"style = "text-decoration: none; color: black;"><ion-icon name="logo-github"></ion-icon> GitHub</a></li>
-                </span>
+                    <li><a href="https://github.com/Aseem2004"style = "text-decoration: none; color: white;"><ion-icon name="logo-github"></ion-icon> GitHub</a></li>
+                </span><br>
                 <span>
-                    <li><a href="https://www.instagram.com/aseem2847/"style = "text-decoration: none; color: black;"><ion-icon name="logo-instagram"></ion-icon>Instagram</a></li>
-                </span>
+                    <li><a href="https://www.instagram.com/aseem2847/"style = "text-decoration: none; color: white;"><ion-icon name="logo-instagram"></ion-icon>Instagram</a></li>
+                </span><br>
                 <span>
-                    <li><a href="https://twitter.com/as0101004"style = "text-decoration: none; color: black;"><ion-icon name="logo-twitter"></ion-icon>Twitter</a></li>
-                </span>
+                    <li><a href="https://twitter.com/as0101004"style = "text-decoration: none; color: white;"><ion-icon name="logo-twitter"></ion-icon>Twitter</a></li>
+                </span><br>
                 <span>
-                    <li><a href="mailto:jainaseem2004@gmail.com"style = "text-decoration: none; color: black;"><ion-icon name="mail-outline"></ion-icon> Email</a></li>
-                </span>
+                    <li><a href="mailto:jainaseem2004@gmail.com"style = "text-decoration: none; color: white;"><ion-icon name="mail-outline"></ion-icon> Email</a></li>
+                </span><br>
                 <span>
-                    <li><a href="tel:8810689780"style = "text-decoration: none; color: black;"><ion-icon name="call-outline"></ion-icon> Call me at +91 8810689780</a></li>
-                </span>
+                    <li><a href="tel:8810689780"style = "text-decoration: none; color: white;"><ion-icon name="call-outline"></ion-icon> Call me at +91 8810689780</a></li>
+                </span><br>
         </ul>
         <br><br>
     </div>
